@@ -117,4 +117,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
     animate();
+
+    // User stats animation
+    const animateUserStats = () => {
+        const counters = [
+            { id: 'current-users', endValue: 1345, duration: 2000 },
+            { id: 'total-users', endValue: 87654, duration: 2500 }
+        ];
+
+        counters.forEach(counter => {
+            const el = document.getElementById(counter.id);
+            if (el) {
+                let start = 0;
+                const end = counter.endValue;
+                const duration = counter.duration;
+                const range = end - start;
+                let current = start;
+                const increment = end > start ? 1 : -1;
+                const stepTime = Math.abs(Math.floor(duration / range));
+                
+                const timer = setInterval(() => {
+                    current += increment * Math.ceil(range / (duration / 16));
+                    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                        current = end;
+                        clearInterval(timer);
+                    }
+                    el.textContent = current.toLocaleString();
+                }, 16);
+            }
+        });
+    };
+
+    // Intersection Observer for animations
+    const sections = document.querySelectorAll('.content-section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                if (entry.target.id === 'map-section') {
+                    animateUserStats();
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 });

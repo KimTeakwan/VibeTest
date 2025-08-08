@@ -84,14 +84,14 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 12rem;
+    font-size: 6rem;
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
 }
 
 .hero-content p {
-    font-size: 3.75rem;
+    font-size: 1.875rem;
     color: var(--text-secondary);
 }
 
@@ -130,6 +130,51 @@ body {
 .image-container img {
     max-width: 100%;
     border-radius: 20px;
+}
+
+/* Map Section */
+#map-section {
+    background-color: #F9FAFB;
+}
+
+.map-container {
+    position: relative;
+    text-align: center;
+}
+
+.world-map {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    opacity: 0.7;
+}
+
+.user-stats {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.stat-item p {
+    margin: 0 0 5px 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.stat-item h3 {
+    margin: 0;
+    color: var(--primary-blue);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.stat-item:not(:last-child) {
+    margin-bottom: 15px;
 }
 
 .bg-light {
@@ -183,6 +228,56 @@ body {
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.9rem;
+}
+
+/* Auth Pages */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+}
+
+.auth-form {
+    background-color: var(--white);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 400px;
+}
+
+.auth-form h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-blue);
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.auth-form .btn-primary {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.auth-switch {
+    margin-top: 2rem;
+    color: var(--text-secondary);
+}
+
+.auth-switch a {
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-decoration: none;
 }
 
 /* Responsive */

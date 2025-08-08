@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Company</title>
+    <title>ABC Company - AI기반 금융 혁신</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,75 +11,106 @@
         <div class="container">
             <div class="logo">ABC</div>
             <nav class="main-nav">
-                <a href="#company">회사소개</a>
-                <a href="#people">인재상</a>
-                <a href="#recruit">채용</a>
-                <a href="login.html" class="btn-nav">로그인</a>
+                <a href="#about">Who We Are</a>
+                <a href="#business">What We Do</a>
+                <a href="#careers">Careers</a>
             </nav>
+            <div class="lang-selector">
+                <a href="#" class="active">KO</a>
+                <a href="#">EN</a>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <canvas id="interactive-canvas"></canvas>
-            <div class="hero-content">
-                <h1>당신과 함께<br>세상을 바꿉니다</h1>
-                <p>ABC는 최고의 동료들과 함께 금융의 미래를 만들어갑니다.</p>
-            </div>
-        </section>
-
-        <section id="map-section" class="content-section">
-            <div class="container">
-                <div class="map-container">
-                    <img src="world-map.jpg" alt="World Map" class="world-map">
-                    <div class="user-stats">
-                        <div class="stat-item">
-                            <p>현재 이용자 수</p>
-                            <h3 id="current-users">0</h3>
-                        </div>
-                        <div class="stat-item">
-                            <p>총 이용자 수</p>
-                            <h3 id="total-users">0</h3>
-                        </div>
+        <section id="hero" class="hero-section full-screen">
+            <div class="slider-container">
+                <div class="slide active">
+                    <div class="hero-content">
+                        <h1 class="hero-title">AI 기반 금융 혁신을<br>선도합니다</h1>
+                        <p class="hero-subtitle">ABC Company는 데이터와 기술을 통해 금융의 미래를 만듭니다.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="hero-content">
+                        <h1 class="hero-title">개인화된 투자 경험을<br>제공합니다</h1>
+                        <p class="hero-subtitle">AI 어드바이저가 당신만을 위한 최적의 포트폴리오를 설계합니다.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="hero-content">
+                        <h1 class="hero-title">데이터로 세상을<br>이롭게 합니다</h1>
+                        <p class="hero-subtitle">정확한 신용 평가 모델로 더 많은 사람들에게 금융의 기회를 제공합니다.</p>
                     </div>
                 </div>
             </div>
+            <button class="slider-arrow prev">&lt;</button>
+            <button class="slider-arrow next">&gt;</button>
+            <div class="slider-nav">
+                <button class="nav-dot active"></button>
+                <button class="nav-dot"></button>
+                <button class="nav-dot"></button>
+            </div>
         </section>
 
-        <section id="company" class="content-section">
+        <section id="about" class="content-section">
             <div class="container">
-                <h2 class="section-title">도전과 혁신의 아이콘</h2>
-                <p class="section-subtitle">ABC는 불가능에 도전하며 새로운 길을 만들어왔습니다.<br>우리의 여정은 계속됩니다.</p>
+                <h2 class="section-title">We are ABC</h2>
+                <p class="section-text">ABC는 전통적인 금융의 경계를 넘어, 인공지능 기술을 통해 전 세계 사람들에게 더 나은 금융 경험을 제공하는 것을 목표로 합니다. 우리는 복잡한 문제를 해결하고, 대담한 아이디어를 현실로 만듭니다.</p>
                 <div class="image-container">
-                    <img src="quokka.jpeg" alt="ABC Team">
+                    <img src="quokka.jpeg" alt="ABC Team Culture">
                 </div>
             </div>
         </section>
 
-        <section id="people" class="content-section bg-light">
+        <section id="stats" class="stats-section content-section bg-dark">
             <div class="container">
-                <h2 class="section-title">최고의 동료</h2>
-                <p class="section-subtitle">자율과 책임의 문화 속에서<br>탁월한 동료들과 함께 성장합니다.</p>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <h3>자율적인 업무 환경</h3>
-                        <p>스스로 문제를 정의하고 해결책을 찾아 실행합니다.</p>
+                <h2 class="section-title text-white">Global Impact</h2>
+                <p class="section-text text-white">우리의 기술은 전 세계적으로 긍정적인 영향을 미치고 있습니다.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 id="current-users">0</h3>
+                        <p>현재 이용자</p>
                     </div>
-                    <div class="feature-item">
-                        <h3>수평적인 커뮤니케이션</h3>
-                        <p>직급 없이 '님'으로 소통하며 자유롭게 의견을 나눕니다.</p>
+                    <div class="stat-item">
+                        <h3 id="total-users">0</h3>
+                        <p>누적 이용자</p>
                     </div>
-                    <div class="feature-item">
-                        <h3>업계 최고 수준의 보상</h3>
-                        <p>뛰어난 역량과 성과에 걸맞은 보상을 제공합니다.</p>
+                    <div class="stat-item">
+                        <h3 id="countries">0</h3>
+                        <p>서비스 국가</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="recruit" class="content-section">
-            <div class="container text-center">
-                <h2 class="section-title">ABC와 함께할 동료를 찾습니다</h2>
+        <section id="business" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Our Business</h2>
+                <div class="business-grid">
+                    <div class="business-item">
+                        <h3>AI 자산 관리</h3>
+                        <p>개인화된 AI 어드바이저가 최적의 포트폴리오를 구성하고 관리합니다.</p>
+                        <a href="#" class="btn-more">더 알아보기 &rarr;</a>
+                    </div>
+                    <div class="business-item">
+                        <h3>데이터 기반 신용 평가</h3>
+                        <p>대안 데이터를 활용하여 더 정확하고 공정한 신용 평가 모델을 제공합니다.</p>
+                        <a href="#" class="btn-more">더 알아보기 &rarr;</a>
+                    </div>
+                    <div class="business-item">
+                        <h3>기업 금융 솔루션</h3>
+                        <p>AI를 통해 기업의 재무 리스크를 예측하고 효율적인 자금 운영을 돕습니다.</p>
+                        <a href="#" class="btn-more">더 알아보기 &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="careers" class="careers-section content-section text-center">
+            <div class="container">
+                <h2 class="section-title">Join Our Team</h2>
+                <p class="section-text">최고의 동료들과 함께 금융의 미래를 만들어갈 분을 기다립니다.</p>
                 <a href="#" class="btn-primary">채용 공고 보기</a>
             </div>
         </section>
@@ -87,7 +118,19 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2025 ABC Company. All Rights Reserved.</p>
+            <div class="footer-content">
+                <div class="footer-logo">ABC</div>
+                <div class="footer-info">
+                    <p>(주)ABC | 대표이사: 김태관</p>
+                    <p>서울특별시 강남구 테헤란로 123, 45층</p>
+                    <p>&copy; 2025 ABC Company Inc. All rights reserved.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Blog</a>
+                </div>
+            </div>
         </div>
     </footer>
 

@@ -1,128 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('interactive-canvas');
-    const ctx = canvas.getContext('2d');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // --- Hero Slider --- 
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.nav-dot');
+    const prevBtn = document.querySelector('.slider-arrow.prev');
+    const nextBtn = document.querySelector('.slider-arrow.next');
+    let currentSlide = 0;
+    let slideInterval;
 
-    let mouse = {
-        x: canvas.width / 2,
-        y: canvas.height / 2
-    };
+    if (slides.length > 0 && dots.length > 0) {
+        const showSlide = (n) => {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+        };
 
-    let food = [];
+        const nextSlide = () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        };
 
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
+        const prevSlide = () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        };
 
-    window.addEventListener('click', (event) => {
-        food.push({ x: event.x, y: event.y, radiusX: 5, radiusY: 3, vy: 1 });
-    });
+        const startSlider = () => {
+            slideInterval = setInterval(nextSlide, 5000); // 5 seconds
+        };
 
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        init();
-    });
+        const stopSlider = () => {
+            clearInterval(slideInterval);
+        };
 
-    class Fish {
-        constructor(x, y, radius, color) {
-            this.x = x;
-            this.y = y;
-            this.radius = radius;
-            this.color = color;
-            this.velocity = { x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2 };
-            this.speed = 1.5;
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-            ctx.closePath();
-        }
-
-        update() {
-            let target = mouse;
-
-            if (food.length > 0) {
-                let closestFood = null;
-                let closestDist = Infinity;
-
-                food.forEach(f => {
-                    let dx = f.x - this.x;
-                    let dy = f.y - this.y;
-                    let dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < closestDist) {
-                        closestDist = dist;
-                        closestFood = f;
-                    }
-                });
-
-                if (closestFood) {
-                    target = closestFood;
-                    if (closestDist < this.radius) {
-                        food.splice(food.indexOf(closestFood), 1);
-                    }
-                }
-            }
-
-            let dx = target.x - this.x;
-            let dy = target.y - this.y;
-            let angle = Math.atan2(dy, dx);
-
-            this.x += Math.cos(angle) * this.speed;
-            this.y += Math.sin(angle) * this.speed;
-
-            this.draw();
-        }
-    }
-
-    let fishArray = [];
-
-    function init() {
-        fishArray = [];
-        for (let i = 0; i < 10; i++) {
-            const radius = 10;
-            const x = Math.random() * (canvas.width - radius * 2) + radius;
-            const y = Math.random() * (canvas.height - radius * 2) + radius;
-            fishArray.push(new Fish(x, y, radius, 'rgba(0, 100, 200, 0.7)'));
-        }
-    }
-
-    function animate() {
-        requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        food.forEach((f, index) => {
-            f.y += f.vy;
-            if (f.y > canvas.height) {
-                food.splice(index, 1);
-            }
-
-            ctx.beginPath();
-            ctx.ellipse(f.x, f.y, f.radiusX, f.radiusY, 0, 0, Math.PI * 2);
-            ctx.fillStyle = '#A0522D'; // Brown color
-            ctx.fill();
-            ctx.closePath();
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopSlider();
+                currentSlide = index;
+                showSlide(currentSlide);
+                startSlider();
+            });
         });
 
-        fishArray.forEach(fish => {
-            fish.update();
+        if(prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                stopSlider();
+                prevSlide();
+                startSlider();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                stopSlider();
+                nextSlide();
+                startSlider();
+            });
+        }
+
+        startSlider();
+    }
+
+    // --- Header Scroll Effect ---
+    const header = document.querySelector('.site-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
     }
 
-    init();
-    animate();
-
-    // User stats animation
-    const animateUserStats = () => {
+    // --- Animate counters on scroll ---
+    const animateCounters = () => {
         const counters = [
             { id: 'current-users', endValue: 1345, duration: 2000 },
-            { id: 'total-users', endValue: 87654, duration: 2500 }
+            { id: 'total-users', endValue: 87654, duration: 2500 },
+            { id: 'countries', endValue: 25, duration: 1500 }
         ];
 
         counters.forEach(counter => {
@@ -134,10 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const range = end - start;
                 let current = start;
                 const increment = end > start ? 1 : -1;
-                const stepTime = Math.abs(Math.floor(duration / range));
                 
                 const timer = setInterval(() => {
-                    current += increment * Math.ceil(range / (duration / 16));
+                    const step = Math.ceil(range / (duration / 16));
+                    current += increment * step;
                     if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
                         current = end;
                         clearInterval(timer);
@@ -148,20 +103,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Intersection Observer for animations
+    // --- Intersection Observer for animations ---
     const sections = document.querySelectorAll('.content-section');
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                if (entry.target.id === 'map-section') {
-                    animateUserStats();
+                
+                if (entry.target.id === 'stats') {
+                    animateCounters();
+                    observer.unobserve(entry.target);
                 }
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.2 });
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    if (sections.length > 0) {
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    }
+
 });
